@@ -1,5 +1,6 @@
-import {Resolver, Query, Mutation, Arg, Int} from 'type-graphql'
-import {Product} from '../entity/Product'
+import { Resolver, Query, Mutation, Arg, Int } from 'type-graphql'
+import { Product } from '../entity/Product'
+import { getConnection } from "typeorm"
 
 @Resolver()
 export class ProductResolver {
@@ -24,4 +25,14 @@ export class ProductResolver {
         return response.affected === 1 ? true : false
     }
 
+    @Query(() => Product)
+    async getProductById(@Arg('id', () => Int) id: number) {
+        const user = await getConnection()
+            .createQueryBuilder()
+            .select("product")
+            .from(Product, "product")
+            .where("product.id = :id", { id: id })
+            .getOne();
+        return user
+    }
 }
