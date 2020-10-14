@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^2.17.0",
+    "apollo-server-express": "^2.18.0",
     "class-validator": "^0.12.2",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
